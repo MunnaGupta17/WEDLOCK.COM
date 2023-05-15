@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,13 +31,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String username;
     
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String password;
     
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String email;
     
     @Column(name = "first_name")
@@ -48,7 +49,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Photo> photos;
     
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String gender;
     
     @Column(name = "date_of_birth")
@@ -67,16 +68,19 @@ public class User {
     
     private String location;
     
+    @ElementCollection
+    private List<Integer> RequestedProfiles; // will save the user id's of user to who i have send my profile
+    
     @Column(name = "about_me")
     private String aboutMe;
     
-    //@Column(name = "partner_preferences")
+    @Column(name = "partner_preferences")
     private String partnerPreferences;
     
     @OneToMany(mappedBy = "user")
     private List<Interest> interestedProfiles;
     
-    //@Column(name = "profile_picture")
+    @Column(name = "profile_picture")
     private String profilePicture;
 
 }
