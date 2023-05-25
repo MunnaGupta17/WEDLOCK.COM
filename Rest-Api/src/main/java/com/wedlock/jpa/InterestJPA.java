@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.wedlock.entities.Interest;
 
-public interface InterestJPA extends JpaRepository<Interest, Integer>{
+public interface InterestJPA extends JpaRepository<Interest, Long>{
 
 }

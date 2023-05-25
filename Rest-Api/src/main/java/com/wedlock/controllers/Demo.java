@@ -34,13 +34,6 @@ public class Demo {
 		ij.save(interest);
 		return new ResponseEntity<String>("done",HttpStatus.ACCEPTED);
 	}
-	@PostMapping("showInterest")
-	public ResponseEntity<String> showInterest(@RequestParam Integer InterestId,@RequestParam Integer user2Id){
-		Optional<User> user =  uj.findById(user2Id);
-		Optional<Interest> inter =  ij.findById(InterestId);
-		User Userr = user.get();
-		Userr.getInterestedProfiles().add(inter.get());
-		return new ResponseEntity<String>("done",HttpStatus.OK);
-	}
+	
 	
 }
