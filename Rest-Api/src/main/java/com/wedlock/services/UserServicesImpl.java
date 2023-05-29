@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wedlock.entities.SearchCriteria;
@@ -20,12 +21,8 @@ import com.wedlock.jpa.UserJPA;
 @Service
 public class UserServicesImpl implements UserServices{
 	
-	
-	private final UserJPA userRepository;
-	
-	public UserServicesImpl(UserJPA userRepository) {
-        this.userRepository = userRepository;
-    }
+	@Autowired
+	private UserJPA userRepository;
 
 	@Override
 	public User getUserById(Long userId) throws UserException {
@@ -106,6 +103,7 @@ public class UserServicesImpl implements UserServices{
 	public List<User> getUsersByAgeRange(int minAge, int maxAge) {
 		// TODO Auto-generated method stub
 		return userRepository.getUsersByAgeRange(minAge, maxAge);
+		
 	}
 
 	@Override

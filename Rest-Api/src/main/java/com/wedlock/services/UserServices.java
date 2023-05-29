@@ -2,11 +2,14 @@ package com.wedlock.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.wedlock.entities.SearchCriteria;
 import com.wedlock.entities.User;
 import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 
+@Service
 public interface UserServices {
 
 	User getUserById(Long userId)throws UserException;

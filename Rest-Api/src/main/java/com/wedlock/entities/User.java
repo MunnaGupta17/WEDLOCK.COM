@@ -46,6 +46,8 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     
+    private Integer age;
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Photo> photos;
     
