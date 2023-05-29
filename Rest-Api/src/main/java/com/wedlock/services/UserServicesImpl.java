@@ -16,8 +16,6 @@ import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 import com.wedlock.jpa.UserJPA;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
 
 @Service
 public class UserServicesImpl implements UserServices{
@@ -80,8 +78,16 @@ public class UserServicesImpl implements UserServices{
 
 	@Override
 	public List<User> searchUsersByCriteria(SearchCriteria criteria) throws SearchCriteriaException {
-		// TODO Auto-generated method stub		
-		return null;
+		// TODO Auto-generated method stub	
+		if(criteria == null) throw new SearchCriteriaException("criteria object cannot be null");
+        return userRepository.searchUsersByCriteria(criteria.getMinAge(),
+        		criteria.getMaxAge(),
+        		criteria.getLocation(),
+        		criteria.getEducation(),
+        		criteria.getGender(),
+        		criteria.getReligion(),
+        		criteria.getCaste(),
+        		criteria.getMaritalStatus());
 	}
 
 	@Override
