@@ -1,5 +1,7 @@
 package com.wedlock.entities;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +29,9 @@ public class Feedback {
 	
 	@Column(name = "rating")
 	private int rating; // Rating given by the user
+	
+	@Column(name = "created_date")
+    private LocalDateTime createdDate;
 	
 	@Column(name = "comment")
 	private String comment; // Comment provided by the user

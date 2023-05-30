@@ -54,8 +54,14 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(ed, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(FeedbackException.class)
-	public ResponseEntity<ErrorDetails> userException(FeedbackException fe,WebRequest wr){
+	@ExceptionHandler(FeedbackNotFoundException.class)
+	public ResponseEntity<ErrorDetails> userException(FeedbackNotFoundException fe,WebRequest wr){
+		ErrorDetails ed = new ErrorDetails(LocalDateTime.now(), fe.getMessage(), wr.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(ed, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InvalidFeedbackException.class)
+	public ResponseEntity<ErrorDetails> userException(InvalidFeedbackException fe,WebRequest wr){
 		ErrorDetails ed = new ErrorDetails(LocalDateTime.now(), fe.getMessage(), wr.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(ed, HttpStatus.BAD_REQUEST);
 	}
