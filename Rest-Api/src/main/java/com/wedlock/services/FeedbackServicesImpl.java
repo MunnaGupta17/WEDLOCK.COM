@@ -14,7 +14,7 @@ import com.wedlock.jpa.FeedbackJPA;
 @Service
 public class FeedbackServicesImpl implements FeedbackServices{
 	
-    private final FeedbackJPA feedbackRepository;
+    private FeedbackJPA feedbackRepository;
 
     public FeedbackServicesImpl(FeedbackJPA feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
