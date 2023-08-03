@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wedlock.entities.Photo;
 import com.wedlock.entities.SearchCriteria;
 import com.wedlock.entities.User;
+import com.wedlock.entities.UserBriefInfo;
 import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 import com.wedlock.services.UserServices;
@@ -116,6 +118,24 @@ public class UserController {
 	        } catch (SearchCriteriaException e) {
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	        }
+	    }
+	    
+	    @GetMapping("/present")
+	    public ResponseEntity<Boolean> isUserPresentInDB(@RequestParam("email") String email, @RequestParam("password") String password){
+	    	boolean isPresent = userService.isUserPresent(email, password);
+	        return ResponseEntity.ok(isPresent);
+	    }
+	    
+	    @GetMapping("/pics")
+	    public ResponseEntity<List<Photo>> getUserPics(@RequestParam("userId") Long userId) throws UserException{
+	    
+				List<Photo> pics= userService.getUserPics(userId);
+			return new ResponseEntity<List<Photo>>(pics,HttpStatus.OK);
+	    }
+	    
+	    public ResponseEntity<UserBriefInfo> getUserBriefInfoController(@RequestParam("userId") Long userId) throws UserException{
+	    	UserBriefInfo userBriefInfo = userService.getUserBriefInfo(userId);
+	    	return new ResponseEntity<UserBriefInfo>(userBriefInfo,HttpStatus.OK);
 	    }
 
 }

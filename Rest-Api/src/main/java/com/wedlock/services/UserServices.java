@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.wedlock.entities.Photo;
 import com.wedlock.entities.SearchCriteria;
 import com.wedlock.entities.User;
+import com.wedlock.entities.UserBriefInfo;
 import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 
@@ -35,5 +37,10 @@ public interface UserServices {
 	List<User> getUsersByProfession(String profession);
 	
 	String[] getNullPropertyNames(Object source);
+	
+	boolean isUserPresent(String email, String password);
 
+	List<Photo> getUserPics(Long userId)throws UserException;
+	
+	UserBriefInfo getUserBriefInfo(Long userId)throws UserException;
 }

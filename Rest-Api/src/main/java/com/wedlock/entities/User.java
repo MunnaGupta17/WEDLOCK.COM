@@ -51,7 +51,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Photo> photos;
     
-    @Column(nullable = false)
+    
     private String gender;
     
     @Column(name = "date_of_birth")

@@ -11,8 +11,10 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wedlock.entities.Photo;
 import com.wedlock.entities.SearchCriteria;
 import com.wedlock.entities.User;
+import com.wedlock.entities.UserBriefInfo;
 import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 import com.wedlock.jpa.UserJPA;
@@ -116,6 +118,30 @@ public class UserServicesImpl implements UserServices{
 	public List<User> getUsersByProfession(String profession) {
 		// TODO Auto-generated method stub
 		return userRepository.findByProfession(profession);
+	}
+	
+	@Override
+    public boolean isUserPresent(String email, String password) {
+        User user = userRepository.findByEmail(email);
+        System.out.println("chandan" + user);
+        return user != null && user.getPassword().equals(password);
+    }
+
+	@Override
+	public List<Photo> getUserPics(Long userId) throws UserException {
+		// TODO Auto-generated method stub
+		User user = getUserById(userId);
+		if(user == null) throw new UserException("user not found with this id");
+		else return user.getPhotos();
+	}
+
+	@Override
+	public UserBriefInfo getUserBriefInfo(Long userId) throws UserException {
+		// TODO Auto-generated method stub
+		User user = getUserById(userId);
+		if(user == null) throw new UserException("user not found with this id");
+		String name = user.getFirstName()+user.getLastName();
+		return new UserBriefInfo(user.getProfilePicture(),name,user.getAge(),user.getDateOfBirth());
 	}
 
 }

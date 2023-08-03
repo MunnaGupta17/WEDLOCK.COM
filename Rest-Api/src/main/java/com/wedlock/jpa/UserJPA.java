@@ -19,6 +19,8 @@ public interface UserJPA extends JpaRepository<User, Long> {
 	List<User> findByGender(String gender);
 
 	List<User> findByLocation(String location);
+	
+	User findByEmail(String email);
 
 	@Query("SELECT u FROM User u WHERE u.age BETWEEN :minAge AND :maxAge")
 	List<User> getUsersByAgeRange(@Param("minAge") Integer minAge, @Param("maxAge") Integer maxAge);

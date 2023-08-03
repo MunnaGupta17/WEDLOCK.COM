@@ -28,7 +28,7 @@ public class Interest {
 	@ManyToOne
     private User user;
 	
-	private Integer interestedUserId;
+	private Long interestedUserId;
 	
 	@Column(name = "created_date")
     private LocalDateTime createdDate;
