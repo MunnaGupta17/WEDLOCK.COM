@@ -144,4 +144,16 @@ public class UserServicesImpl implements UserServices{
 		return new UserBriefInfo(user.getProfilePicture(),name,user.getAge(),user.getDateOfBirth());
 	}
 
+	@Override
+	public String addNotification(String notification, Long userId) throws UserException {
+		// TODO Auto-generated method stub
+		User user = getUserById(userId);
+		if(user == null) throw new UserException("user not found with this id");
+        List<String> notifications = user.getNotification();
+        notifications.add(notification);
+        user.setNotification(notifications);
+        userRepository.save(user);
+        return "notification given to user successfully";
+	}
+
 }

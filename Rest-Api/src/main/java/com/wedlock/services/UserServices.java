@@ -43,4 +43,6 @@ public interface UserServices {
 	List<Photo> getUserPics(Long userId)throws UserException;
 	
 	UserBriefInfo getUserBriefInfo(Long userId)throws UserException;
+	
+	String addNotification(String notification,Long userId) throws UserException;
 }

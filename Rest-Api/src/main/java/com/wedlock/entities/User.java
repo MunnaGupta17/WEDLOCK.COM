@@ -71,7 +71,7 @@ public class User {
     private String location;
     
     @ElementCollection
-    private List<Integer> RequestedProfiles; // will save the user id's of user to who i have send my profile
+    private List<Integer> sentProfileToUserIds; // will save the user id's of user to who i have send my profile
     
     @Column(name = "about_me")
     private String aboutMe;
@@ -81,6 +81,9 @@ public class User {
     
     @OneToMany(mappedBy = "user")
     private List<Interest> interestedProfiles;
+    
+    @ElementCollection
+    private List<String> notification; // here user will be notified with updates.
     
     @Column(name = "profile_picture")
     private String profilePicture;

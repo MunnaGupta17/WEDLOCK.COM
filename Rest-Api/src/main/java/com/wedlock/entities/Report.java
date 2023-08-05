@@ -2,6 +2,8 @@ package com.wedlock.entities;
 
 import java.time.LocalDateTime;
 
+import com.wedlock.enums.ReportStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +37,7 @@ public class Report {
     
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User reporterUser;
     
     @ManyToOne
     @JoinColumn(name = "reported_user_id", nullable = false)
@@ -43,5 +45,7 @@ public class Report {
     
     @Column(name = "reported_at")
     private LocalDateTime reportedAt;
+    
+    private ReportStatus status = ReportStatus.PENDING;
 
 }
