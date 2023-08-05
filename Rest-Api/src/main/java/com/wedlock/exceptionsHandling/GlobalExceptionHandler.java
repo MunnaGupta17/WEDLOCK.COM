@@ -30,12 +30,6 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(ed, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(PaymentException.class)
-	public ResponseEntity<ErrorDetails> userException(PaymentException pe,WebRequest wr){
-		ErrorDetails ed = new ErrorDetails(LocalDateTime.now(), pe.getMessage(), wr.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(ed, HttpStatus.BAD_REQUEST);
-	}
-	
 	@ExceptionHandler(MessageException.class)
 	public ResponseEntity<ErrorDetails> userException(MessageException me,WebRequest wr){
 		ErrorDetails ed = new ErrorDetails(LocalDateTime.now(), me.getMessage(), wr.getDescription(false));
