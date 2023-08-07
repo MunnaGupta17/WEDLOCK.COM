@@ -1,15 +1,20 @@
 package com.wedlock.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -87,5 +92,11 @@ public class User {
     
     @Column(name = "profile_picture")
     private String profilePicture;
+    
+    @OneToMany
+    private List<Message> receivedMessages = new ArrayList<>();
+
+    @OneToMany
+    private List<Message> sentMessages = new ArrayList<>();
 
 }
