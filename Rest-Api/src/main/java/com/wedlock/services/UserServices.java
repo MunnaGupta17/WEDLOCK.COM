@@ -8,6 +8,7 @@ import com.wedlock.entities.Photo;
 import com.wedlock.entities.SearchCriteria;
 import com.wedlock.entities.User;
 import com.wedlock.entities.UserBriefInfo;
+import com.wedlock.exceptionsHandling.PhotoException;
 import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 
@@ -43,6 +44,8 @@ public interface UserServices {
 	List<Photo> getUserPics(Long userId)throws UserException;
 	
 	UserBriefInfo getUserBriefInfo(Long userId)throws UserException;
+	
+	String changeProfilePic(String newPicURL,Long userId)throws PhotoException,UserException;
 	
 	String addNotification(String notification,Long userId) throws UserException;
 }

@@ -15,6 +15,7 @@ import com.wedlock.entities.Photo;
 import com.wedlock.entities.SearchCriteria;
 import com.wedlock.entities.User;
 import com.wedlock.entities.UserBriefInfo;
+import com.wedlock.exceptionsHandling.PhotoException;
 import com.wedlock.exceptionsHandling.SearchCriteriaException;
 import com.wedlock.exceptionsHandling.UserException;
 import com.wedlock.jpa.UserJPA;
@@ -154,6 +155,21 @@ public class UserServicesImpl implements UserServices{
         user.setNotification(notifications);
         userRepository.save(user);
         return "notification given to user successfully";
+	}
+
+	@Override
+	public String changeProfilePic(String newPicURL, Long userId) throws PhotoException,UserException {
+		// TODO Auto-generated method stub
+		if(newPicURL == null) throw new PhotoException("new Pic url is null");
+		Optional<User> userOptional = userRepository.findById(userId);
+		if(userOptional.isPresent()) {
+			userOptional.get().setProfilePicture(newPicURL);
+			userRepository.save(userOptional.get());
+			return "profile picture changed successfully";
+		}else {
+			throw new UserException("user not found in db with this id");
+		}
+		
 	}
 
 }
